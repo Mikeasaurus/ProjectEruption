@@ -1,0 +1,132 @@
+[gd_scene load_steps=9 format=3 uid="uid://b3n1vjsamii1r"]
+
+[ext_resource type="Script" path="res://scripts/LaneNote.gd" id="2_6ox3b"]
+[ext_resource type="Texture2D" uid="uid://88d8o3b64jqm" path="res://textures/lane/FailWave.png" id="2_523qf"]
+[ext_resource type="Texture2D" uid="uid://bvvvbyv7ukh65" path="res://textures/lane/LeftCatchWave.png" id="3_40r83"]
+[ext_resource type="Texture2D" uid="uid://cbk5fvcsth7m0" path="res://textures/lane/FailLaneNote.png" id="4_60ini"]
+
+[sub_resource type="Animation" id="Animation_7i0j6"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_ciqe0"]
+resource_name = "failWave"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("fail:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("fail:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("note:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_60ini")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("note:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_a83ec"]
+resource_name = "succWave"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("note:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("success:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(2, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("success:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j3146"]
+_data = {
+"RESET": SubResource("Animation_7i0j6"),
+"failWave": SubResource("Animation_ciqe0"),
+"succWave": SubResource("Animation_a83ec")
+}
+
+[node name="LaneNote" type="Node2D"]
+script = ExtResource("2_6ox3b")
+
+[node name="fail" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("2_523qf")
+
+[node name="success" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_40r83")
+
+[node name="note" type="Sprite2D" parent="."]
+texture = ExtResource("4_60ini")
+
+[node name="noteAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_j3146")
+}
+
+[connection signal="animation_finished" from="noteAnim" to="." method="_on_note_anim_animation_finished"]

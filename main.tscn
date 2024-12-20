@@ -1,0 +1,234 @@
+[gd_scene load_steps=14 format=3 uid="uid://ckl48paput8bw"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_1o7ay"]
+[ext_resource type="Script" path="res://scripts/inputs/ChordInputCatcher.gd" id="2_lws7e"]
+[ext_resource type="Script" path="res://scripts/inputs/LaneInputCatcher.gd" id="3_l83ke"]
+[ext_resource type="FontFile" uid="uid://dm2jl3xg44jsn" path="res://fonts/Black.ttf" id="4_37its"]
+[ext_resource type="Script" path="res://scripts/ScoreDisplayer.gd" id="4_661bc"]
+[ext_resource type="Script" path="res://scripts/inputs/DropInputCatcher.gd" id="4_827yj"]
+[ext_resource type="FontFile" uid="uid://cy633oddw802w" path="res://fonts/SemiBold.ttf" id="5_053io"]
+[ext_resource type="FontFile" uid="uid://c4h2rsv2ycogn" path="res://fonts/ExtraBold.ttf" id="6_6aqnb"]
+[ext_resource type="Texture2D" uid="uid://qj3vc0hjq6d" path="res://textures/PerfectGame.png" id="8_jjgfq"]
+
+[sub_resource type="Animation" id="Animation_31yhh"]
+resource_name = "comboAdd"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("comboR/combo:theme_override_font_sizes/font_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [64, 68, 64]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("comboR:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8utjc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("comboR/combo:theme_override_font_sizes/font_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [64]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("comboR:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("comboR/comboM/comboLabel:theme_override_font_sizes/font_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
+
+[sub_resource type="Animation" id="Animation_7kcpr"]
+resource_name = "comboFail"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("comboR/combo:theme_override_font_sizes/font_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.233333, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [64, 56, 56, 64]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("comboR:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.233333, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.33), Color(1, 1, 1, 0.33), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("comboR/comboM/comboLabel:theme_override_font_sizes/font_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.233333, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [16, 12, 12, 16]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_smxvo"]
+_data = {
+"RESET": SubResource("Animation_8utjc"),
+"comboAdd": SubResource("Animation_31yhh"),
+"comboFail": SubResource("Animation_7kcpr")
+}
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_1o7ay")
+
+[node name="inputs" type="Node" parent="."]
+
+[node name="chordInputCatcher" type="Node" parent="inputs"]
+script = ExtResource("2_lws7e")
+
+[node name="laneInputCatcher" type="Node" parent="inputs"]
+script = ExtResource("3_l83ke")
+
+[node name="dropInputCatcher" type="Node" parent="inputs"]
+script = ExtResource("4_827yj")
+
+[node name="lanes" type="Node2D" parent="."]
+
+[node name="score" type="VBoxContainer" parent="."]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 108.0
+offset_bottom = 186.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 8
+script = ExtResource("4_661bc")
+
+[node name="comboM" type="MarginContainer" parent="score"]
+layout_mode = 2
+theme_override_constants/margin_top = -12
+theme_override_constants/margin_bottom = -12
+
+[node name="comboAnim" type="AnimationPlayer" parent="score/comboM"]
+libraries = {
+"": SubResource("AnimationLibrary_smxvo")
+}
+
+[node name="comboR" type="HBoxContainer" parent="score/comboM"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="combo" type="Label" parent="score/comboM/comboR"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_37its")
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="comboM" type="MarginContainer" parent="score/comboM/comboR"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/margin_bottom = 12
+
+[node name="comboLabel" type="Label" parent="score/comboM/comboR/comboM"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_053io")
+theme_override_font_sizes/font_size = 16
+text = "COMBO"
+
+[node name="scoreM" type="MarginContainer" parent="score"]
+layout_mode = 2
+theme_override_constants/margin_top = -8
+theme_override_constants/margin_bottom = -9
+
+[node name="score" type="Label" parent="score/scoreM"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_6aqnb")
+theme_override_font_sizes/font_size = 32
+text = "0"
+
+[node name="timeM" type="MarginContainer" parent="score"]
+layout_mode = 2
+theme_override_constants/margin_top = -4
+theme_override_constants/margin_bottom = -4
+
+[node name="time" type="Label" parent="score/timeM"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.66)
+theme_override_fonts/font = ExtResource("5_053io")
+theme_override_font_sizes/font_size = 24
+text = "0:00"
+
+[node name="perfectM" type="MarginContainer" parent="score"]
+layout_mode = 2
+theme_override_constants/margin_top = 2
+
+[node name="perfect" type="TextureRect" parent="score/perfectM"]
+layout_mode = 2
+texture = ExtResource("8_jjgfq")
+stretch_mode = 2
+
+[node name="debug" type="VBoxContainer" parent="score"]
+layout_mode = 2
+theme_override_constants/separation = -4
+
+[node name="chordLabel" type="Label" parent="score/debug"]
+layout_mode = 2
+text = "0"
+
+[node name="laneLabel" type="Label" parent="score/debug"]
+layout_mode = 2
+text = "0"
+
+[node name="dropLabel" type="Label" parent="score/debug"]
+layout_mode = 2
+text = "0"
+
+[node name="ticker" type="Timer" parent="score"]
+
+[connection signal="timeout" from="score/ticker" to="score" method="_on_ticker_timeout"]
