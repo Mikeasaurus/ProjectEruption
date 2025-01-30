@@ -26,13 +26,14 @@ func _ready() -> void:
 	self.combo = 0
 	self.isPerfect = true
 
+# Note warners
+func catchLaneNote(lane: int):
+	self.lane_note_catched.emit(lane)
+
 # Inputs warners
 func changeLane(lane: int):
 	self.currentLane = lane
 	self.lane_changed.emit(lane)
-
-func catchLaneNote(lane: int):
-	self.lane_note_catched.emit(lane)
 
 func pressChord(chord: int):
 	self.chord_pressed.emit(chord)

@@ -58,8 +58,8 @@ func initLanes() -> void:
 	
 func playSequenceTest() -> void:
 	while true: # temp
-		#await get_tree().create_timer(randf_range(.2,.8)).timeout
-		await get_tree().create_timer(.2).timeout
+		await get_tree().create_timer(randf_range(.2,.8)).timeout
+		#await get_tree().create_timer(.2).timeout
 		match (randi_range(0,2)):
 			0:
 				leftLane.initNote()

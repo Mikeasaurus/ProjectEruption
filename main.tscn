@@ -10,34 +10,6 @@
 [ext_resource type="FontFile" uid="uid://c4h2rsv2ycogn" path="res://fonts/ExtraBold.ttf" id="6_6aqnb"]
 [ext_resource type="Texture2D" uid="uid://qj3vc0hjq6d" path="res://textures/PerfectGame.png" id="8_jjgfq"]
 
-[sub_resource type="Animation" id="Animation_31yhh"]
-resource_name = "comboAdd"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("comboR/combo:theme_override_font_sizes/font_size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [64, 68, 64]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("comboR:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_8utjc"]
 length = 0.001
 tracks/0/type = "value"
@@ -75,6 +47,34 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [16]
+}
+
+[sub_resource type="Animation" id="Animation_31yhh"]
+resource_name = "comboAdd"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("comboR/combo:theme_override_font_sizes/font_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [64, 68, 64]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("comboR:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_7kcpr"]
